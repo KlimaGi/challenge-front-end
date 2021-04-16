@@ -1,20 +1,19 @@
 <template>
-  <div class="task">
+  <div class="post">
     <h3>
-      {{ task.title }}
-      <i @click="$emit('delete-task', task.id)" class="fas fa-times"></i>
+      {{ post.title }}
+      <i @click="$emit('delete-post', post.id)" class="fas fa-times"></i>
     </h3>
-    <p>{{ task.author }}</p>
-    <p>{{ task.day }}</p>
-    <p>{{ task.text }}</p>
+    <p>{{ post.author }}</p>
+    <p>{{ post.day }}</p>
+    <p>{{ post.text }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Task",
   props: {
-    task: Object,
+    post: Object,
   },
 };
 </script>
@@ -24,18 +23,18 @@ export default {
   color: #8a8f8a;
 }
 
-.task {
+.post {
   background: #e9f0e9;
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
 }
 
-.task.reminder {
+.post.reminder {
   border-left: 5px solid #008000;
 }
 
-.task h3 {
+.post h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;

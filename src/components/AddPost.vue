@@ -25,13 +25,13 @@
       <textarea type="text" v-model="text" name="text" placeholder="Text" />
     </div>
 
-    <input type="submit" value="Save Task" class="btn btn-block" />
+    <input type="submit" value="Save Post" class="btn btn-block" />
   </form>
 </template>
 
 <script>
 export default {
-  name: "AddTask",
+  name: "AddPost",
   data() {
     return {
       title: "",
@@ -49,7 +49,7 @@ export default {
         return;
       }
 
-      const newTask = {
+      const newPost = {
         id: Math.floor(Math.random() * 100000),
         title: this.title,
         author: this.author,
@@ -57,7 +57,7 @@ export default {
         text: this.text,
       };
 
-      this.$emit("add-task", newTask);
+      this.$emit("add-post", newPost);
       this.title = "";
       this.author = "";
       this.day = "";

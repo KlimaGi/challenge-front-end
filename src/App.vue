@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <router-link to="post">Post</router-link>
-    <router-link to="create-post">Create Post</router-link>
-    <router-link to="edit-post">Edit Post</router-link>
+    <router-link to="/post/2">Post</router-link>
+    <router-link to="/create-post">Create Post</router-link>
+    <router-link to="/edit-post">Edit Post</router-link>
     <Header title="Our Articles" />
 
     <router-view />

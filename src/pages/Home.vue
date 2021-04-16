@@ -1,36 +1,36 @@
 <template>
-  <AddTask @add-task="addTask" />
+  <AddPost @add-post="addPost" />
 
-  <Tasks @delete-task="deleteTask" :tasks="tasks" />
+  <PostsList @delete-post="deletePost" :posts="posts" />
 </template>
 
 <script>
-import Tasks from "../components/Tasks";
-import AddTask from "../components/AddTask";
+import PostsList from "../components/PostsList";
+import AddPost from "../components/AddPost";
 export default {
   name: "Home",
   props: {},
   components: {
-    Tasks,
-    AddTask,
+    PostsList,
+    AddPost,
   },
   data() {
     return {
-      tasks: [],
+      posts: [],
     };
   },
   methods: {
-    addTask(task) {
-      this.tasks = [...this.tasks, task];
+    addPost(post) {
+      this.posts = [...this.posts, post];
     },
-    deleteTask(id) {
+    deletePost(id) {
       if (confirm("Are you sure?")) {
-        this.tasks = this.tasks.filter((task) => task.id !== id);
+        this.posts = this.posts.filter((post) => post.id !== id);
       }
     },
   },
   created() {
-    this.tasks = [
+    this.posts = [
       // typically make request
       {
         id: 1,
