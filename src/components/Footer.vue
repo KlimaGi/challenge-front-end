@@ -1,17 +1,21 @@
 <template>
-  <footer>
-    <p>Copyright &copy; 2021</p>
-    <router-link to="/about">About</router-link>
+  <footer class="mt-3">
+    <router-link to="/">Home</router-link>
   </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$color: #442344;
+$color-light: #9c269c;
 a {
-  color: #014901;
+  color: $color;
+  text-decoration: none;
+  border-bottom: 1px solid $color;
 }
-
+a:hover {
+  color: $color-light;
+}
 footer {
-  margin-top: 30px;
   text-align: center;
 }
 </style>

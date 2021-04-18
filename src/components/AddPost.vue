@@ -1,106 +1,81 @@
 <template>
-  <form @submit="onSubmit" class="add-form">
-    <div class="form-control">
-      <label>Post Title</label>
-      <input
-        type="text"
-        v-model="title"
-        name="title"
-        placeholder="Post Title"
-      />
-    </div>
+  <form class="form-control d-grid gap-3" @submit="onSubmit">
+    <input
+      class="form-control p-2 mt-3 bg-light border"
+      type="text"
+      v-model="title"
+      name="title"
+      placeholder="Post Title"
+    />
 
-    <div class="form-control">
-      <label>Author</label>
-      <input type="text" v-model="author" name="author" placeholder="Author" />
-    </div>
+    <label for="userId"></label>
+    <input
+      class="form-control p-2 bg-light border"
+      type="text"
+      v-model="userId"
+      name="userId"
+      placeholder="Username"
+    />
 
-    <div class="form-control">
-      <label>Date</label>
-      <input type="text" v-model="day" name="day" placeholder="Date" />
+    <label for="body"></label>
+    <textarea
+      class="form-control p-2 bg-light border"
+      type="text"
+      v-model="body"
+      name="body"
+      placeholder="Text"
+    />
+    <div class="mb-3 d-grid gap-2">
+      <input type="submit" value="Save Post" class="btn btn-color" />
     </div>
-
-    <div class="form-control">
-      <label>Text</label>
-      <textarea type="text" v-model="text" name="text" placeholder="Text" />
-    </div>
-
-    <input type="submit" value="Save Post" class="btn btn-block" />
   </form>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "AddPost",
   data() {
     return {
       title: "",
-      author: "",
-      day: "",
-      text: "",
+      userId: "",
+      body: "",
     };
   },
   methods: {
     onSubmit(e) {
       e.preventDefault();
 
-      if (!this.title || !this.author || !this.day || !this.text) {
+      if (!this.title || !this.userId || !this.body) {
         alert("Please add the text, all areas are important.");
         return;
       }
 
       const newPost = {
-        id: Math.floor(Math.random() * 100000),
         title: this.title,
-        author: this.author,
-        day: this.day,
-        text: this.text,
+        userId: this.userId,
+        body: this.body,
       };
 
-      this.$emit("add-post", newPost);
+      axios.post("https://jsonplaceholder.typicode.com/posts/create", newPost);
+
       this.title = "";
-      this.author = "";
-      this.day = "";
-      this.text = "";
+      this.userId = "";
+      this.body = "";
     },
   },
 };
 </script>
 
-<style scoped>
-.add-form {
-  margin-bottom: 40px;
+<style scoped lang="scss">
+$color: #442344;
+$pseudo-white: #f3eff2;
+.btn-color {
+  color: $pseudo-white;
+  background-color: $color;
 }
-
-.form-control {
-  margin: 20px 0;
-}
-
-.form-control label {
-  display: block;
-}
-
-.form-control input,
 textarea {
-  width: 100%;
-  height: 40px;
-  margin: 5px;
-  padding: 3px 7px;
-  font-size: 17px;
-}
-
-.form-control-check {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.form-control-check label {
-  flex: 1;
-}
-
-.form-control-check input {
-  flex: 2;
-  height: 20px;
+  height: 15rem !important;
 }
 </style>

@@ -1,19 +1,35 @@
 <template>
   <div :key="post.id" v-for="post in posts">
-    <PostContent @delete-post="$emit('delete-post', post.id)" :post="post" />
+    <PostItem @delete-post="deletePost" :post="post" />
   </div>
 </template>
 
 <script>
-import PostContent from "./PostContent";
+import PostItem from "./PostItem";
+import axios from "axios";
 
 export default {
-  props: {
-    posts: Array,
+  data() {
+    return {
+      posts: [],
+    };
   },
   components: {
-    PostContent,
+    PostItem,
   },
   emits: ["delete-post"],
+  async created() {
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/posts"
+    );
+    this.posts = response.data;
+  },
+  methods: {
+    deletePost(id) {
+      if (confirm("Are you sure?")) {
+        this.posts = this.posts.filter((post) => post.id !== id);
+      }
+    },
+  },
 };
 </script>

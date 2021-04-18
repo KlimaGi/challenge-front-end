@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1 v-show="homePage">{{ title }}</h1>
+    <h1 class="mx-5 mt-2 py-3" v-show="homePage">{{ title }}</h1>
   </header>
 </template>
 
@@ -19,11 +19,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+$color: #553b55;
+$pseudo-white: #f3eff2;
+
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  color: $color;
+  background-image: linear-gradient(300deg, $color 0%, $pseudo-white 94%);
 }
 </style>
